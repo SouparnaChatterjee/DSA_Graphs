@@ -1,0 +1,23 @@
+vector<int> bfsTraversal(int n, vector<vector<int>> &adj){
+    // Write your code here.
+    vector<int> res;
+    queue<int> q;
+    vector<int> vis(n,0);
+    q.push(0);
+    vis[0]=2;
+    while(!q.empty())
+    {
+        int node=q.front();
+        q.pop();
+        res.push_back(node);
+        for(auto it: adj[node])
+        {
+            if(!vis[it])
+            {
+                vis[it]=1;
+                q.push(it);
+            }
+        }
+    }
+    return res;
+}
