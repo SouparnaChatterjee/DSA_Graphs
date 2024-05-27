@@ -1,0 +1,28 @@
+void dfs(int p, int n, vector<vector<int>>& roads, vector<int>& visited)
+{
+    //no adjacency matrix given.// wrong: We create visited array based on roads(=1 or 0)
+    // we are given the visited array
+    visited[p]=1;
+    for(int i=0;i<n;i++)
+    {
+        if(roads[p][i] && !visited[i])
+        dfs(i,n,roads,visited); //i and n for dfs
+    }
+}
+
+int findNumOfProvinces(vector<vector<int>>& roads, int n) {
+    // Write your code here.
+    //only visted
+    //rest increment count and dfs
+    vector<int> visited(n,0);
+    int count=0;
+    for(int i=0;i<n;i++)
+    {
+        if(!visited[i]) //i in square brackets
+        {
+            dfs(i,n,roads,visited); // we know i and n ... p is unknown here
+            count++;
+        }
+    }
+    return count;
+}
